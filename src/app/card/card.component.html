@@ -1,0 +1,72 @@
+<div class="card">
+  <h2
+    [ngStyle]="{
+      color: card.title.length < 5 ? 'blue' : 'green',
+      fontWeight: card.title.length < 7 ? 'normal' : 'bold'
+    }"
+  >
+    {{ index }}. {{ card.title }}
+  </h2>
+
+  <div>
+    <!-- пайпы | date: "short" -->
+    <!-- <strong> {{ cardDate | date: "medium" }}</strong> -->
+    <strong> {{ cardDate | date: 'dd MMMM YYYY HH:mm:ss' : 'ru' }}</strong>
+  </div>
+  <!-- <p
+    class="text"
+    [ngClass]="{
+      red: textColor === 'red',
+      royal: textColor === 'royal',
+      grass: textColor === 'grass'
+    }"
+  >
+    {{ text }}
+  </p> -->
+
+  <p
+    class="text"
+    [class.red]="textColor === 'red'"
+    [class.royal]="textColor === 'royal'"
+    [class.grass]="textColor === 'grass'"
+  >
+    {{ card.text }}
+  </p>
+
+  <button (click)="textColor = 'red'">Set red</button>
+  <button (click)="textColor = 'royal'">Set blue</button>
+  <button (click)="textColor = 'grass'">Set green</button>
+
+  <!-- <p>{{ number }}</p>
+  <p>{{ array }}</p>
+  <pre>{{ object | json }}</pre>
+  <p>{{ getInfo() }}</p> -->
+
+  <img [src]="imgUrl" alt="" width="50" />
+  <!-- binding -->
+  <!-- <img src="{{ imgUrl }}" alt="" /> -->
+  <!-- <img src="{{ img2Url }}" alt="" width="50" >-->
+
+  <!-- <button [disabled]="disabled">Enable</button> -->
+  <button (click)="changeTitle()">Change title</button>
+  <button (click)="card.title = 'inline Title'">Change title inline</button>
+
+  <!-- <input type="text" (input)="inputHandler($event)" [value]="title" /> -->
+
+  <!-- Two-way binding -->
+  <!-- <input
+    type="text"
+    #myInput
+    (input)="inputHandler(myInput.value)"
+    placeholder=""
+    [value]="title"
+  /> -->
+
+  <!-- Two-way binding with FormsModule-->
+
+  <input
+    type="text"
+    [(ngModel)]="card.title"
+    (ngModelChange)="changeHandler()"
+  />
+</div>
